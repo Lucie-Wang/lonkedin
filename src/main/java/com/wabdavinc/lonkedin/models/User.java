@@ -36,8 +36,9 @@ public class User {
 	private String name;
 	@Size(min = 5, message = "Universe must be at least 5 characters")
 	private String universe;
-	@Size(min = 1, message = "Please choose a profile image")
+	@Size(min = 1, message = "Choose a profile image")
 	private String picture;
+	private String description;
 	@Size(min = 8, message = "Password must be at least 8 characters")
 	private String password;
 	@Transient
@@ -96,23 +97,7 @@ public class User {
 	private Date updatedAt;
 	
 	public User() {
-		
-	}
-
-	public List<Post> getCreatedPosts() {
-		return createdPosts;
-	}
-
-	public void setCreatedPosts(List<Post> createdPosts) {
-		this.createdPosts = createdPosts;
-	}
-
-	public List<User> getEnemyRequests() {
-		return enemyRequests;
-	}
-
-	public void setEnemyRequests(List<User> enemyRequests) {
-		this.enemyRequests = enemyRequests;
+		this.description = "";
 	}
 
 	public Long getId() {
@@ -155,6 +140,14 @@ public class User {
 		this.picture = picture;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -177,6 +170,14 @@ public class User {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+
+	public List<Post> getCreatedPosts() {
+		return createdPosts;
+	}
+
+	public void setCreatedPosts(List<Post> createdPosts) {
+		this.createdPosts = createdPosts;
 	}
 
 	public Game getGame() {
@@ -227,6 +228,14 @@ public class User {
 		this.enemies = enemies;
 	}
 
+	public List<User> getEnemyRequests() {
+		return enemyRequests;
+	}
+
+	public void setEnemyRequests(List<User> enemyRequests) {
+		this.enemyRequests = enemyRequests;
+	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -246,6 +255,7 @@ public class User {
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
+		this.updatedAt = new Date();
 	}
 	@PreUpdate
 	protected void onUpdate() {

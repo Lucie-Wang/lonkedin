@@ -88,7 +88,7 @@
 					<img src="${ result.picture }" alt="" />
 					<div class="resultInfo">
 						<p><a href="/dashboard/${ result.id }">${ result.name } </a>(${ result.universe })</p>
-						<p>${ result.job != null ? result.job.title.concat(" -- ").concat(result.game.name) : "Seeking Work"}</p>
+						<p>${ result.job != null ? result.job.title.concat(" -- ").concat("<a href='/game/").concat(result.game.id).concat("'>").concat(result.game.name).concat("</a>") : "Seeking Work"}</p>
 					</div>
 					<c:choose>
 						<c:when test="${ sessionScope.user_id == user.id && result != lonk }">
@@ -111,6 +111,21 @@
 			</c:if>
 			</c:forEach>
 			</div>
+			
+				<c:if test="${ enemies.size() > 0 }">
+			<h1 class="enemyHeader">${ sessionScope.user_id != user.id ? user.name.concat("'s") : "Your " } Enemies:</h1>
+			<div class="connectionsGrid main">
+					<c:forEach items="${ enemies }" var="enemy">
+				<div class="row">
+					<img src="${ enemy.picture }" alt="" />
+					<div class="resultInfo">
+						<p><a href="/dashboard/${ enemy.id }">${ enemy.name } </a>(${ enemy.universe })</p>
+						<p>${ enemy.job != null ? enemy.job.title.concat(" -- ").concat(enemy.game.name) : "Seeking Work"}</p>
+					</div>
+				</div>
+					</c:forEach>
+			</div>
+				</c:if>
 		</div>
 	</div>
 </body>
