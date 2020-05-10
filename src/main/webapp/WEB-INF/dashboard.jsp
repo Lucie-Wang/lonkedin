@@ -248,10 +248,8 @@
 							<input class="submit" type="submit" value="Post" />
 						</form:form>
 						<div class="feed">
-
 							<div class="feedSubHeader">
 								<h3>Posts</h3>
-
 								<c:forEach items="${ posts }" var="post">
 									<div class="post">
 										<div class="postGrid">
